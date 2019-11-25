@@ -1,0 +1,22 @@
+#btn-start {
+  margin-top: 40vh;
+  transform: scale(6);
+}
+
+.file-name {
+  margin: 1rem;
+  color: rgb(67, 247, 157);
+}
+
+body {
+  background-image: url("bg.jpg");
+  background-size: cover;
+  background-position: bottom;
+
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
