@@ -1,30 +1,16 @@
-try {
-  var AudioContext = window.AudioContext || window.webkitAudioContext
-  var audioContext = new AudioContext()
-} catch(e) {
-  console.log(e)
-  var pre = document.createElement('p')
-  pre.innerText = e + '\n' + JSON.stringify(e, null, 2)
-  document.body.appendChild(pre)
-}
+var audioContext = new AudioContext()
+var sourceNode
 
 fetch('brwsr2_fork_compressed.m4a')
   .then(response => response.arrayBuffer())
-  .then(arrayBuffer => audioContext.decodeAudioData(
-    arrayBuffer,
-    (buffer) => resolve(buffer))
-  )
+  .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
   .then(audioBuffer => {
-    var sourceNode
-    var isPlaying = false
     var btnStart = document.getElementById('btn-start')
-
     btnStart.disabled = false
     btnStart.addEventListener('click', () => {
-      if (isPlaying) {
+      if (sourceNode) {
         sourceNode.stop()
-        sourceNode.des
-        isPlaying = false
+        sourceNode = null
         btnStart.innerText = 'start'
       } else { 
         sourceNode = audioContext.createBufferSource()
@@ -32,14 +18,29 @@ fetch('brwsr2_fork_compressed.m4a')
         sourceNode.loop = true
         sourceNode.connect(audioContext.destination)
         sourceNode.start()
-        isPlaying = true
         btnStart.innerText = 'stop'
       }
     })
   })
   .catch(e => {
     console.log(e)
-    var pre = document.createElement('p')
-    pre.innerText = e + '\n' + JSON.stringify(e, null, 2)
-    document.body.appendChild(pre)
   })
+
+var modulateAudio = (event) => {
+  if (!sourceNode) return
+
+  var percentX = (event.x || event.touches[0].clientX) / window.innerWidth
+  var percentY = (event.y || event.touches[0].clientY) / window.innerHeight
+
+  sourceNode.playbackRate.value = .5 + percentY
+}
+
+window.addEventListener('mousedown', (event) => {
+  window.onmousemove = modulateAudio
+})
+
+window.addEventListener('mouseup', (event) => {
+  window.onmousemove = null
+})
+
+window.ontouchstart = modulateAudio

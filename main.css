@@ -1,27 +1,34 @@
-#btn-start {
-  margin-top: 10vh;
-  transform: scale(6);
-}
 
 .file-name {
-  margin: 30vh 0 0 0;
   font-size: 2rem;
   font-weight: normal;
   color: rgb(67, 247, 157);
 }
 
 body {
-  margin: 0;
+  /* margin: 0; */
   font-family: monospace;
 
   background-image: url("bg.jpg");
   background-size: cover;
   background-position: bottom;
+  height: 100vh;
+}
 
+.controls {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  transition: 3s;
+}
+
+.blerp {
+  flex-direction: row;
+  align-items: unset;
+}
+
+.blerp #btn-start {
+  margin-left: auto
 }
 
 @media only screen and (max-width: 600px) {
