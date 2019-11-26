@@ -1,8 +1,19 @@
-var audioContext = new AudioContext()
+try {
+  var AudioContext = window.AudioContext || window.webkitAudioContext
+  var audioContext = new AudioContext()
+} catch(e) {
+  console.log(e)
+  var pre = document.createElement('p')
+  pre.innerText = e + '\n' + JSON.stringify(e, null, 2)
+  document.body.appendChild(pre)
+}
 
 fetch('brwsr2_fork_compressed.m4a')
   .then(response => response.arrayBuffer())
-  .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+  .then(arrayBuffer => audioContext.decodeAudioData(
+    arrayBuffer,
+    (buffer) => resolve(buffer))
+  )
   .then(audioBuffer => {
     var sourceNode
     var isPlaying = false
@@ -25,4 +36,10 @@ fetch('brwsr2_fork_compressed.m4a')
         btnStart.innerText = 'stop'
       }
     })
+  })
+  .catch(e => {
+    console.log(e)
+    var pre = document.createElement('p')
+    pre.innerText = e + '\n' + JSON.stringify(e, null, 2)
+    document.body.appendChild(pre)
   })
