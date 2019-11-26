@@ -11,6 +11,8 @@ fetch('brwsr2_fork_compressed.m4a')
     var marker = document.getElementById('marker')
     btnStart.disabled = false
     btnStart.addEventListener('click', () => {
+      audioContext.resume()
+
       if (sourceNode) {
         sourceNode.stop()
         sourceNode = null
