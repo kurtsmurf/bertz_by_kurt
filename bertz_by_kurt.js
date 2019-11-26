@@ -64,15 +64,18 @@ var modulateAudio = (event) => {
 }
 
 var mouseMove = (event) => {
+  event.preventDefault()
   moveMarker(event)
   modulateAudio(event)
 }
 
 window.addEventListener('mousedown', (event) => {
+  document.body.style.cursor = 'crosshair'
   window.onmousemove = mouseMove
 })
 
 window.addEventListener('mouseup', (event) => {
+  document.body.style.cursor = 'unset'
   window.onmousemove = null
 })
 

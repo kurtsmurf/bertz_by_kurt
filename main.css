@@ -9,6 +9,7 @@
 
 #marker {
   display: none;
+  z-index: -1;
   transition: .1s ease-out;
 }
 
@@ -35,7 +36,7 @@
   color: rgb(67, 247, 157);
 }
 
-html {
+body {
   font-family: monospace;
   background-image: url("bg.jpg");
   background-size: cover;
