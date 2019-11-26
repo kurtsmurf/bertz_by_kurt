@@ -1,3 +1,33 @@
+#btn-start {
+  transform: translate(45vw, 35vh) scale(4);
+  transition: 1s;
+}
+
+#btn-start.playing {
+  transform: translate(0, 0) scale(1);
+}
+
+#marker {
+  display: none;
+  transition: .1s;
+}
+
+:root {
+  --marker-diameter: 5rem;
+  --marker-radius: calc(var(--marker-diameter) / 2)
+}
+
+#marker.playing {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--marker-diameter);
+  height: var(--marker-diameter);
+  border-radius: 50%;
+  background: red;
+  margin: 0;
+}
 
 .file-name {
   font-size: 2rem;
@@ -5,21 +35,12 @@
   color: rgb(67, 247, 157);
 }
 
-body {
-  /* margin: 0; */
+html {
   font-family: monospace;
-
   background-image: url("bg.jpg");
   background-size: cover;
   background-position: bottom;
   height: 100vh;
-}
-
-.controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: 3s;
 }
 
 .blerp {
