@@ -46,12 +46,16 @@ var moveMarker = (event) => {
   var x = event.x || event.touches[0].clientX
   var y = event.y || event.touches[0].clientY
 
+  var percentY = 1 - y / window.innerHeight
+  var newAnimationDuration = (percentY + .5) ** 2
+
   // var message = document.createElement('p')
   // document.body.appendChild(message)
   // message.innerText = event.touches[0].clientY
 
   // marker.style.transform = `translate(calc(${x}px - var(--marker-radius)), calc(${y}px - var(--marker-radius)))`
   marker.style.transform = `translate(calc(50vw - var(--marker-radius)), calc(${y}px - var(--marker-radius)))`
+  marker.style.animationDuration = newAnimationDuration + 's'
 }
 
 var modulateAudio = (event) => {

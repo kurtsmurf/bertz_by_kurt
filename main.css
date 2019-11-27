@@ -14,8 +14,9 @@
 }
 
 :root {
-  --marker-diameter: 5rem;
-  --marker-radius: calc(var(--marker-diameter) / 2)
+  --marker-diameter: 10rem;
+  --marker-radius: calc(var(--marker-diameter) / 2);
+  --marker-bg-color: #ffa500aa;
 }
 
 #marker.playing {
@@ -25,9 +26,40 @@
   left: 0;
   width: var(--marker-diameter);
   height: var(--marker-diameter);
-  border-radius: 50%;
-  background: rgb(255, 51, 0);
   margin: 0;
+  border-radius: 50%;
+  background-color: var(--marker-bg-color);
+  box-shadow: 0 0 2rem 2rem var(--marker-bg-color);
+  background-size: cover;
+  background-position-y: -.5rem;
+  animation-name: ecto-blobify;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  filter: hue-rotate(220deg) saturate(4);
+}
+
+@keyframes ecto-blobify {
+  0% {
+      background-image: url('ecto-blobs/ecto-blob-1.PNG');
+  }
+  17% {
+      background-image: url('ecto-blobs/ecto-blob-2.PNG');
+  }
+  34% {
+      background-image: url('ecto-blobs/ecto-blob-3.PNG');
+  }
+  51% {
+      background-image: url('ecto-blobs/ecto-blob-4.PNG');
+  }
+  68% {
+      background-image: url('ecto-blobs/ecto-blob-5.PNG');
+  }
+  85% {
+      background-image: url('ecto-blobs/ecto-blob-6.PNG');
+  }
+  100% {
+      background-image: url('ecto-blobs/ecto-blob-1.PNG');
+  }
 }
 
 .file-name {
